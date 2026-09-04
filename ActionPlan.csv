@@ -1,17 +1,69 @@
 ﻿Initial commit,x,03/06/2010
 ,,
-Add vendor submodules,,03/06/2010
+Add vendor submodules,nr,03/06/2010
 ,,
-Add zend and remove Doctrine,,03/06/2010
+Add zend and remove Doctrine,nr,03/06/2010
 ,,
-Add event observer,,03/06/2010
+Add event observer,nr,03/06/2010
 ,,
-Add homepage controller,,03/06/2010
+Add homepage controller,nr,03/06/2010
 ,,
-"First draft with entities, persistence and unit tests",,03/06/2010
+"First draft with entities, persistence and unit tests",be,03/06/2010
 ,,
-Add unit tests and performance tests,,03/06/2010
+Add unit tests and performance tests,be,03/06/2010
 ,,
-Improve README,,03/06/2010
+Improve README,nr,03/06/2010
 ,,
-Improve README,,03/06/2010
+Improve README,nr,03/06/2010
+,,
+Add logic and unit tests,be,04/06/2010
+,,
+Add Board with unit tests,be,04/06/2010
+,,
+Fix generator,nr,04/06/2010
+,,
+Add board tests to test suite,nr,04/06/2010
+,,
+Improve Game Entity,be,04/06/2010
+,,
+Implement Piece Entity,be,04/06/2010
+,,
+Add Square with unit tests,be,04/06/2010
+,,
+Add PieceFilter with unit tests,be,04/06/2010
+,,
+Fix board cache access,be,04/06/2010
+,,
+Fix Game serialization,nr,04/06/2010
+,,
+Improve Player Entity,be,04/06/2010
+,,
+Update unit tests,be,04/06/2010
+,,
+Add Kernel timer,nr,04/06/2010
+,,
+Add xdebug configuration,nr,04/06/2010
+,,
+Optimize profiler,nr,04/06/2010
+,,
+More Entity implementation,be,04/06/2010
+,,
+Start working on GUI,x,04/06/2010
+,,
+Allow to choose color at beginning,,04/06/2010
+,,
+Add data dir,,04/06/2010
+,,
+Add persistence service,,04/06/2010
+,,
+Implement controllers,,04/06/2010
+,,
+Complete Entitites,,04/06/2010
+,,
+Add gz compression to persistence service,,04/06/2010
+,,
+Add routing and views for gameplay,,04/06/2010
+,,
+Ignore data files,,04/06/2010
+,,
+Add public assets symlink,,04/06/2010
