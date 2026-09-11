@@ -22,7 +22,9 @@ export default function Home({
   const generator = new Generator();
   const [player, setPlayer] = useState(undefined as Player | undefined);
   useEffect(() => {
-    setPlayer(generator.createGame().getPlayer(color));
+    const game = generator.createGame();
+    setPlayer(game.getPlayer(color));
+    game.setCreator(player);
   }, [color]);
   if (!player) return null;
 

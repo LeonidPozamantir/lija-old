@@ -27,6 +27,9 @@ export default class Generator {
             white: this.createPlayer(game, 'white'),
             black: this.createPlayer(game, 'black')
         };
+
+        game.setCreator(game.getPlayer('white'));
+
         return game;
     }
 
