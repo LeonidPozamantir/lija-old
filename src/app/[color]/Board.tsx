@@ -36,7 +36,6 @@ export default function Board({
   return (
     <div className="lija_board">
       {squareElements}
-      {!player.game.isStarted ? <Link href="/exchange" className="lija_exchange" title="Change position"></Link> : null}
     </div>
   );
 }

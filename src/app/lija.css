@@ -130,7 +130,7 @@ div.lija_piece.king.black{
   background-position: -320px +64px;
 }
 
-a.lija_exchange_position {
+a.lija_exchange {
   background: url(/images/exchange.png) top left no-repeat;
   width: 128px;
   height: 128px;
@@ -141,7 +141,7 @@ a.lija_exchange_position {
   cursor: pointer;
 }
 
-a.lija_exchange_position:hover {
+a.lija_exchange:hover {
   background-position: 0 -128px;
 }
 
