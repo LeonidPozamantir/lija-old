@@ -24,7 +24,7 @@ export default function Home({
   useEffect(() => {
     const game = generator.createGame();
     setPlayer(game.getPlayer(color));
-    game.setCreator(player);
+    game.creator = player;
   }, [color]);
   if (!player) return null;
 
