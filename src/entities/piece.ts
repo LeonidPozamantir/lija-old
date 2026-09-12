@@ -24,6 +24,10 @@ export default abstract class Piece {
         return this.getClass() === className;
     }
 
+    get player() {
+        return this._player;
+    }
+
     public set player(player: Player) {
         this._player = player;
     }

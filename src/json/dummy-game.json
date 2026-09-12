@@ -1,0 +1,51 @@
+{
+  "hash": "abcdef",
+  "isStarted": true,
+  "creator": "white",
+  "players": {
+    "white": {
+      "hash": "ghij",
+      "color": "white",
+      "pieces": [
+        { "x": 1, "y": 2, "code": "p" },
+        { "x": 1, "y": 1, "code": "r" },
+        { "x": 2, "y": 2, "code": "p" },
+        { "x": 2, "y": 1, "code": "n" },
+        { "x": 3, "y": 2, "code": "p" },
+        { "x": 3, "y": 1, "code": "b" },
+        { "x": 4, "y": 2, "code": "p" },
+        { "x": 4, "y": 1, "code": "q" },
+        { "x": 5, "y": 4, "code": "p" },
+        { "x": 5, "y": 1, "code": "k" },
+        { "x": 6, "y": 2, "code": "p" },
+        { "x": 1, "y": 4, "code": "b" },
+        { "x": 7, "y": 2, "code": "p" },
+        { "x": 6, "y": 3, "code": "n" },
+        { "x": 8, "y": 2, "code": "p" },
+        { "x": 8, "y": 1, "code": "r" }
+      ]
+    },
+    "black": {
+      "hash": "jihg",
+      "color": "black",
+      "pieces": [
+        { "x": 1, "y": 6, "code": "p" },
+        { "x": 1, "y": 8, "code": "r" },
+        { "x": 2, "y": 7, "code": "p" },
+        { "x": 2, "y": 8, "code": "n" },
+        { "x": 3, "y": 7, "code": "p" },
+        { "x": 3, "y": 8, "code": "b" },
+        { "x": 4, "y": 7, "code": "p" },
+        { "x": 4, "y": 8, "code": "q" },
+        { "x": 5, "y": 5, "code": "p" },
+        { "x": 5, "y": 8, "code": "k" },
+        { "x": 6, "y": 7, "code": "p" },
+        { "x": 6, "y": 8, "code": "b" },
+        { "x": 7, "y": 7, "code": "p" },
+        { "x": 6, "y": 6, "code": "n" },
+        { "x": 8, "y": 7, "code": "p" },
+        { "x": 8, "y": 8, "code": "r" }
+      ]
+    }
+  }
+}
