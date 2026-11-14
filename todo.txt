@@ -1,0 +1,13 @@
+game.js:
+    #35 - disable moves after move
+    #76,77 - for active and hover we need lichess_square_inner somewhere
+    all beat-related things
+    #122... give-up - when we have lichess_give_up
+    #139 - think about it when we have lichess_permalink_toggle
+    #144, #278 - maybe when we have ai endpoint
+    #189 - implement when possible (we need to get from somewhere html with class lichess_current_player etc.)
+    other events
+
+main and game controller - saving game (new created and started) - later if needed
+
+Add captured piece to deads

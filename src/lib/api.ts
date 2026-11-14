@@ -1,5 +1,5 @@
-import Generator from "@/chess/generator";
 import Game from "@/entities/game";
+import Convertor from "@/lib/convertor";
 import axios from "axios";
 
 
@@ -18,8 +18,20 @@ export const fetchGame = async (hash: string) => {
     return undefined;
   }
 
-  const generator = new Generator();
-  const resGame = generator.createGame();
+  const convertor = new Convertor();
+  const resGame = convertor.convertGame(gameData);
   
   return resGame;
 };
+
+
+
+export const findPlayer = async (hash: string) => {
+  const gameHash = hash.substring(0, 6);
+  const playerHash = hash.substring(6, 10);
+
+  const game: Game | undefined = await fetchGame(gameHash);
+
+  const player = game?.getPlayerByHash(playerHash);
+  return player;
+}

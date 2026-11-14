@@ -1,6 +1,7 @@
 import Board from "./board";
 import Piece from "./piece";
 import Player from "./player";
+import CloneContext from "./cloneContext";
 
 export default class Square {
 
@@ -16,6 +17,16 @@ export default class Square {
         this._x = x;
         this._y = y;
         this._color = color;
+    }
+
+    public clone(context: CloneContext): Square {
+        const existing = context.get(this);
+        if (existing) return existing;
+
+        const clone = Object.assign(Object.create(Object.getPrototypeOf(this)) as Square, this);
+        context.set(this, clone);
+        clone._board = this._board.clone(context);
+        return clone;
     }
 
     get key(): string {

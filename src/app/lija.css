@@ -60,7 +60,7 @@ div.my_turn div.lija_square:hover div.lija_square_inner {
 div.lija_square.droppable-active div.lija_square_inner {
   background: url(/images/over4.png) top left no-repeat;
 }
-div.lija_square.droppable-hover div.lija_square_inner {
+div.lija_square.droppable-hover:hover div.lija_square_inner {
   background: url(/images/over3.png) top left no-repeat;
 }
 
@@ -146,7 +146,6 @@ a.lija_exchange:hover {
 }
 
 div.lija_promotion_choice {
-  display: none;
   position: absolute;
   top: 0;
   left: 0;

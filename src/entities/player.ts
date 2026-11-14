@@ -1,5 +1,6 @@
 import type Game from "./game";
 import Piece from "./piece";
+import CloneContext from "./cloneContext";
 
 export default class Player {
 
@@ -15,6 +16,17 @@ export default class Player {
             { length: 4 },
             () => chars[Math.floor(Math.random() * chars.length)]
         ).join('');
+    }
+
+    public clone(context: CloneContext): Player {
+        const existing = context.get(this);
+        if (existing) return existing;
+
+        const clone = Object.assign(Object.create(Object.getPrototypeOf(this)) as Player, this);
+        context.set(this, clone);
+        clone._game = this._game?.clone(context);
+        clone._pieces = this._pieces?.map(piece => piece.clone(context));
+        return clone;
     }
 
     get hash(): string {

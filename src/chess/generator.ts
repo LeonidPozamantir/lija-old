@@ -23,6 +23,7 @@ export default class Generator {
 
     public createGame(): Game {
         const game = new Game();
+        game.isStarted = true;
         game.players = {
             white: this.createPlayer(game, 'white'),
             black: this.createPlayer(game, 'black')
