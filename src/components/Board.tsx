@@ -128,11 +128,13 @@ export default function Board({
     return next;
   }
 
+  const game = player.game;
+
   const isMyTurn = () => !!options.targets;
 
   for (const [key, square] of squares) {
     const piece = square.getPiece();
-    const check = piece instanceof King && piece.isAttacked() ? ' check' : '';
+    const check = game.isStarted && piece instanceof King && piece.player.getIsMyTurn() && piece.isAttacked() ? ' check' : '';
     const el = (
       <div key={square.key}
         className={`lija_square ${square.color} ${check} ${droppableActive.has(square.key) ? 'droppable-active' : ''} ${droppableHover.has(square.key) ? 'droppable-hover' : ''}`}

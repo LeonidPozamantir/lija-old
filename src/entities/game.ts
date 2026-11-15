@@ -10,6 +10,7 @@ export default class Game {
     private _isFinished: boolean = false;
     private _players: { [color: string]: Player } = {};
     private _creator?: Player;
+    private _turns: number = 0;
     private _board?: Board;
 
     private _updatedAt: number;
@@ -106,6 +107,10 @@ export default class Game {
 
     get hash(): string {
         return this._hash;
+    }
+
+    get turns(): number {
+        return this._turns;
     }
 
     public getPieces(): Piece[] {

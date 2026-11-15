@@ -45,6 +45,10 @@ export default class Player {
         return this._game?.getPlayer(this.isWhite() ? 'black' : 'white');
     }
 
+    public getIsMyTurn(): boolean {
+        return !!this._game && this._game.turns % 2 === (this.isWhite() ? 0 : 1);
+    }
+
     get game(): Game {
         return this._game;
     }

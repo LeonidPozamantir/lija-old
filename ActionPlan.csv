@@ -64,6 +64,14 @@ Add gz compression to persistence service,nr,04/06/2010
 ,,
 Add routing and views for gameplay,x,04/06/2010
 ,,
-Ignore data files,,04/06/2010
+Ignore data files,nr,04/06/2010
 ,,
-Add public assets symlink,,04/06/2010
+Add public assets symlink,nr,04/06/2010
+,,
+Use a BlackHole logger and remove Zend Framework,nr,05/06/2010
+,,
+More implementation and testing,x,05/06/2010
+,,
+More implementation and unit tests,nn,05/06/2010
+,,
+More unit tests and performance improvements,x,05/06/2010
