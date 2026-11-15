@@ -75,3 +75,23 @@ More implementation and testing,x,05/06/2010
 More implementation and unit tests,nn,05/06/2010
 ,,
 More unit tests and performance improvements,x,05/06/2010
+,,
+Performance refactoring,nr,06/06/2010
+,,
+Upgrade Symfony,nr,08/06/2010
+,,
+Introduce Board Analyser to extract complex logic from entities,nr,09/06/2010
+,,
+Fix tons of bugs due to last refactoring,nr,09/06/2010
+,,
+Refactor castling detection,nr,09/06/2010
+,,
+Fix class properties,nr,09/06/2010
+,,
+All tests pass,nr,09/06/2010
+,,
+Remove Entity cache,nr,09/06/2010
+,,
+Use Analyser for all chess specific processing,x,09/06/2010
+,,
+Huge performance refactoring,,09/06/2010

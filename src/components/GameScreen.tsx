@@ -75,6 +75,10 @@ export default function GameScreen({
 
   };
 
+  const checkSquareKey = (() => {
+    return 'e8'; // TODO
+  })();
+
 
   const [lijaData, setLijaData] = useState({
     game: {
@@ -107,7 +111,7 @@ export default function GameScreen({
   return (
     <div className={`lija_game clearfix lija_player_${player.color} ${isMyTurn ? 'my_turn' : ''}`}>
       <div className="lija_board_wrap">
-        <Board player={player} onMove={sendMoveRequest} movePiece={movePiece} options={lijaData} />
+        <Board player={player} checkSquareKey={checkSquareKey} onMove={sendMoveRequest} movePiece={movePiece} options={lijaData} />
         {!playerPageFlag && <Link href={`/${player.getOpponent()!.color}`} className="lija_exchange" title="Change position"></Link>}
       </div>
       <div className="lija_table_wrap">
