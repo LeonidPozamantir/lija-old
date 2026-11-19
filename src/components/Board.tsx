@@ -9,11 +9,13 @@ import { usePlayer } from "@/state/usePlayer";
 
 export default function Board({
   player,
+  checkSquareKey,
   onMove,
   movePiece,
   options
 }: Readonly<{
   player: Player,
+  checkSquareKey: string,
   onMove: (moveData: MoveData) => void,
   movePiece: (from: string, to: string) => void,
   options: {
@@ -134,7 +136,7 @@ export default function Board({
 
   for (const [key, square] of squares) {
     const piece = square.getPiece();
-    const check = game.isStarted && piece instanceof King && piece.player.getIsMyTurn() && piece.isAttacked() ? ' check' : '';
+    const check = checkSquareKey === square.key ? ' check' : '';
     const el = (
       <div key={square.key}
         className={`lija_square ${square.color} ${check} ${droppableActive.has(square.key) ? 'droppable-active' : ''} ${droppableHover.has(square.key) ? 'droppable-hover' : ''}`}

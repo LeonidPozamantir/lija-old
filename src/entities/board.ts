@@ -55,14 +55,14 @@ export default class Board {
     protected createSquares() {
         for (let x = 1; x <= 8; x++) {
             for (let y = 1; y <= 8; y++) {
-                const key = this.posToKey(x, y);
+                const key = Board.posToKey(x, y);
                 const color = (x + y) % 2 === 0 ? 'white' : 'black';
                 this._squares.set(key, new Square(this, key, x, y, color));
             }   
         }
     }
 
-    public posToKey(x: number, y: number): string {
+    public static posToKey(x: number, y: number): string {
         const xKeys: { [key: number]: string } = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h'};
         return `${xKeys[x]}${y}`;
     }

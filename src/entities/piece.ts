@@ -1,10 +1,13 @@
 import Game from './game';
 import type Player from './player';
 import CloneContext from './cloneContext';
+import Board from './board';
+import Square from './square';
 
 export default abstract class Piece {
 
     private _player: Player;
+    private _board: Board;
     private _x: number;
     private _y: number;
     private _hash: string;
@@ -22,6 +25,7 @@ export default abstract class Piece {
         const clone = Object.assign(Object.create(Object.getPrototypeOf(this)) as Piece, this);
         context.set(this, clone);
         clone._player = this._player.clone(context);
+        clone._board = this._board.clone(context);
         return clone;
     }
 
@@ -44,7 +48,7 @@ export default abstract class Piece {
     }
 
     public getSquare(): Square {
-        return this.getGame().board.getSquareByKey(this.getSquareKey());
+        return this._board.getSquareByKey(Board.posToKey(this._x, this._y));
     }
 
     public getGame(): Game {
@@ -52,13 +56,16 @@ export default abstract class Piece {
     }
 
     public getSquareKey(): string {
-        const xKeys: { [key: number]: string } = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h'};
-        return `${xKeys[this._x]}${this._y}`;
+        return Board.posToKey(this._x, this._y);
     }
 
     public moveTo(x: number, y: number): void {
         this._x = x;
         this._y = y;
+    }
+
+    public setBoard(board: Board): void {
+        this._board = board;
     }
 
     public getColor(): string {
