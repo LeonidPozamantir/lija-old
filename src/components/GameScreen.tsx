@@ -44,7 +44,7 @@ export default function GameScreen({
   };
 
   const sendMoveRequest = async (moveData: MoveData) => {
-    const data = (await api.post<MoveReturnData>('/api/dmChessGame/move', { data: moveData })).data;
+    const data = (await api.post<MoveReturnData>(`/api/move/${player?.getFullHash()}`, { data: { player: player?.getFullHash(), ...moveData } })).data;
     updateFromJson(data);
   };
 
@@ -137,8 +137,8 @@ export default function GameScreen({
 }
 
 export type MoveData = {
-  player: string;
-  piece: string;
-  square: string;
+  from: string;
+  to: string;
   promotion?: string;
 };
+

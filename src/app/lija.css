@@ -48,19 +48,19 @@ div.ljsi {
   width: 64px;
   height: 64px;
 }
-div.lija_square.moved div.lija_square_inner {
+div.lija_square.moved div.ljsi {
   background: url(/images/over5.png) top left no-repeat;
 }
-div.lija_square.check div.lija_square_inner {
+div.lija_square.check div.ljsi {
   background: url(/images/over6.png) top left no-repeat;
 }
-div.my_turn div.lija_square:hover div.lija_square_inner {
+div.my_turn div.lija_square:hover div.ljsi {
   background: url(/images/over.png) top left no-repeat;
 }
-div.lija_square.droppable-active div.lija_square_inner {
+div.lija_square.droppable-active div.ljsi {
   background: url(/images/over4.png) top left no-repeat;
 }
-div.lija_square.droppable-hover:hover div.lija_square_inner {
+div.lija_square.droppable-hover:hover div.ljsi {
   background: url(/images/over3.png) top left no-repeat;
 }
 

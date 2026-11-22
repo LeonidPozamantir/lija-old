@@ -84,9 +84,8 @@ export default function Board({
     movePiece(oldSquareKey, square.key);
 
     const moveData: MoveData = {
-      player: options.player.code,
-      piece: piece.hash,
-      square: square.key
+      from: oldSquareKey,
+      to: square.key
     };
     if (piece.getClass() === 'Pawn' && (options.player.color === 'white' && square.y === 8 || options.player.color === 'black' && square.y === 1)) {
       setPendingMoveData(moveData);
