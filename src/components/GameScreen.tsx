@@ -26,11 +26,16 @@ export default function GameScreen({
 
   const router = useRouter();
 
-  useSubscription("/user/queue/notifications", (message) => {
+  useSubscription('/user/queue/notifications', (message) => {
     const data = JSON.parse(message.body);
     if (data.status === 'start') {
       router.replace(data.url);
     }
+  });
+
+  useSubscription('/user/game', (message) => {
+    const data = JSON.parse(message.body);
+    updateFromJson(data);
   });
 
   const toggleJoinUrl = () => {
@@ -44,7 +49,7 @@ export default function GameScreen({
   };
 
   const updateFromJson = (data: MoveReturnData) => {
-    setLijaData({ ...lijaData, possibleMoves: new Map(data.targets) });
+    setLijaData({ ...lijaData, possibleMoves: new Map(data.possibleMoves) });
     displayEvents(data.events);
     indicateTurn();
   };
@@ -91,7 +96,7 @@ export default function GameScreen({
   });
 
   type MoveReturnData = {
-    targets: [[string, string[]]];
+    possibleMoves: [[string, string[]]];
     events: EventData[];
   };
 

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
     
     return NextResponse.json({
-        targets: [
+        possibleMoves: [
             ['a7', ['a6', 'a5']],
             ['h7', ['h6', 'h5']]
         ],
