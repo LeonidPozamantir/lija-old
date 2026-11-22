@@ -34,6 +34,13 @@ export default class Board {
         this.getPieces().forEach((piece) => {
             this.pieces[piece.getSquareKey()] = piece;
         });
+        Object.keys(this._game.players).forEach((color) => {
+            const player = this._game.getPlayer(color);
+            if (!player) return;
+            player.pieces.forEach((piece) => {
+                piece.setBoard(this);
+            });
+        });
     }
 
     public getPieces(): Piece[] {

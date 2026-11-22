@@ -2,35 +2,68 @@
 import GameScreen from "@/components/GameScreen";
 import Game from "@/entities/game";
 import { fetchGame } from "@/lib/api";
-import { redirect } from "next/navigation";
-import { use, useEffect, useState } from "react";
+import { WebSocketMessageStatus } from "@/lib/websocketMessages";
+import { PlayerProvider } from "@/state/PlayerProvider";
+import { usePlayerReducer } from "@/state/usePlayerReducer";
+import { useRouter } from "next/navigation";
+import { use, useEffect, useRef, useState } from "react";
+import { useStompClient } from "react-stomp-hooks";
 
 export default function GamePage({
   params
 }: {
   params: Promise<{ hash: string }>
 }) {
+
+  const router = useRouter();
   const { hash } = use(params);
-  if (!/^[\w]{6}$/.test(hash)) return null;
   const [game, setGame] = useState(undefined as Game | undefined);
+  const playerReducer = usePlayerReducer();
+  const { actions: { setPlayer } } = playerReducer;
+
+  const messageSent = useRef(false);
+
+  const stompClient = useStompClient();
 
   useEffect(() => {
     fetchGame(hash).then(gameData => setGame(gameData));
   }, [hash]);
 
-  if (!game) return;
+  useEffect(() => {
+    if (!game || !stompClient || game.isStarted || messageSent.current) return;
+
+    const playerInvited = game.getInvited();
+    if (!playerInvited) return;
+
+    game.isStarted = true;
+    // TODO: $this->container->getLichessPersistenceService()->save($game);
+
+    stompClient.publish({
+      destination: '/app',
+      body: JSON.stringify({ status: WebSocketMessageStatus.START, hash: playerInvited.getOpponent()?.getFullHash })
+    });
+    messageSent.current = true;
+
+    router.replace(`/player/${playerInvited.getFullHash()}`);
+
+  }, [router, game, stompClient]);
+
+  useEffect(() => {
+    if (game?.isStarted) {
+      const playerCreator = game.creator;
+      setPlayer(playerCreator);
+    }
+  }, [game]);
+
+  if (!/^[\w]{6}$/.test(hash)) return null;
+  if (!game) return null;
 
   if (game.isStarted) {
-    const player = game.creator;
-    if (!player) return;  
-    return <GameScreen player={player} />;
+    return (
+      <PlayerProvider value={playerReducer}>
+        <GameScreen />
+      </PlayerProvider>
+    );
   }
-
-  const player = game.getInvited();
-  game.isStarted = true;
-
-  // TODO: $this->container->getLichessPersistenceService()->save($game);
-
-  redirect(`/player/${player?.getFullHash()}`);
 
 }

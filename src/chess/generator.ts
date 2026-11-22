@@ -29,7 +29,6 @@ export default class Generator {
             black: this.createPlayer(game, 'black')
         };
 
-        this.preloadGame(game);
         game.creator = game.getPlayer('white');
 
         return game;
@@ -64,16 +63,6 @@ export default class Generator {
         const piece = new PieceClass(x, y);
         piece.player = player;
         return piece;
-    }
-
-    public preloadGame(game: Game): void {
-        Object.keys(game.players).forEach((color) => {
-            const player = game.getPlayer(color);
-            if (!player) return;
-            player.pieces.forEach((piece) => {
-                piece.setBoard(game.board);
-            });
-        });
-    }
+    }   
 
 }

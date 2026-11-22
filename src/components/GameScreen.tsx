@@ -2,10 +2,11 @@ import { useTranslations } from "next-intl";
 
 import Board from "./Board";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import api from "@/lib/api";
-import { redirect } from "next/navigation";
 import { usePlayer } from "@/state/usePlayer";
+import { useSubscription } from "react-stomp-hooks";
+import { useRouter } from "next/navigation";
 
 export default function GameScreen({
   playerPageFlag = false
@@ -23,20 +24,14 @@ export default function GameScreen({
   const [isJoinVisible, setJoinVisible] = useState(true);
   const [isMyTurn, setIsMyTurn] = useState<boolean>(true);
 
+  const router = useRouter();
 
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    if (isStarted) return;
-
-    const waitForOpponent = async () => {
-      const response = (await api.get(`/api/wait/${player?.getFullHash()}/${player?.game.updatedAt}`)).data;
-      if (response === 'wait') timeout = setTimeout(waitForOpponent, 2000);
-      else redirect(response);
+  useSubscription("/user/queue/notifications", (message) => {
+    const data = JSON.parse(message.body);
+    if (data.status === 'start') {
+      router.replace(data.url);
     }
-
-    timeout = setTimeout(waitForOpponent, 2000);
-    return () => clearTimeout(timeout);
-  }, [isStarted])
+  });
 
   const toggleJoinUrl = () => {
     if (isStarted) return;
@@ -44,19 +39,19 @@ export default function GameScreen({
   };
 
   const sendMoveRequest = async (moveData: MoveData) => {
-    const data = (await api.post<MoveReturnData>('/api/dmChessGame/move', {data: moveData})).data;
+    const data = (await api.post<MoveReturnData>('/api/dmChessGame/move', { data: moveData })).data;
     updateFromJson(data);
   };
 
   const updateFromJson = (data: MoveReturnData) => {
-    setLijaData({...lijaData, targets: new Map(data.targets)});
+    setLijaData({ ...lijaData, possibleMoves: new Map(data.targets) });
     displayEvents(data.events);
     indicateTurn();
   };
 
   const displayEvents = (events: EventData[]) => {
     for (const event of events) {
-      switch(event.action) {
+      switch (event.action) {
         case 'piece_move':
           movePiece(event.from!, event.to!);
       }
@@ -65,7 +60,7 @@ export default function GameScreen({
 
   const indicateTurn = () => {
     if (lijaData.game.finished) document.title = t('Game over');
-    else if (!!lijaData.targets) {
+    else if (!!lijaData.possibleMoves) {
       document.title = t('Your turn');
       setIsMyTurn(true);
     } else {
@@ -86,10 +81,10 @@ export default function GameScreen({
       finished: isFinished,
     },
     player: {
-      color: player.color,
+      color: player?.color,
       code: 'not implemented yet'
     },
-    targets: new Map([
+    possibleMoves: new Map([
       ['c6', ['b4', 'd4']], // TODO: dummy
       ['b7', ['b2', 'b1']]
     ])
@@ -105,6 +100,8 @@ export default function GameScreen({
     from?: string;
     to?: string
   };
+
+
 
 
   if (!player) return <></>;

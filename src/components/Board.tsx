@@ -26,7 +26,7 @@ export default function Board({
       color: string,
       code: string
     },
-    targets?: Map<string, string[]>
+    possibleMoves?: Map<string, string[]>
   }
 }>) {
 
@@ -56,7 +56,7 @@ export default function Board({
         setPieceMoving(squareKey);
         addDroppableActive(squareKey);
         if (isMyTurn()) {
-          options.targets!.get(squareKey)?.forEach(key => {
+          options.possibleMoves!.get(squareKey)?.forEach(key => {
             addDroppableActive(key);
             addDroppableHover(key);
           });
@@ -110,7 +110,7 @@ export default function Board({
     if (!pieceMoving && isMyTurn()) {
       const piece = square.getPiece();
       if (piece && piece.getColor() === options.player.color) {
-        options.targets!.get(square.key)?.forEach(key => addDroppableActive(key));
+        options.possibleMoves!.get(square.key)?.forEach(key => addDroppableActive(key));
       }
     }
   }
@@ -132,7 +132,7 @@ export default function Board({
 
   const game = player.game;
 
-  const isMyTurn = () => !!options.targets;
+  const isMyTurn = () => !!options.possibleMoves;
 
   for (const [key, square] of squares) {
     const piece = square.getPiece();
